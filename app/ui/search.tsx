@@ -3,6 +3,8 @@ import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
+
+const WAIT_TIME = 500;
 export default function Search({ placeholder }: { placeholder: string }) {
 
   const searchParams = useSearchParams()
@@ -20,7 +22,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
       params.delete('query');
     }
     router.replace(`${pathname}?${params.toString()}`)
-  })
+  }, WAIT_TIME)
 
   return (
     <div className="relative flex flex-1 flex-shrink-0">
